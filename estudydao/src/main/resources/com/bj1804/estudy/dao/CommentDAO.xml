@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.CommentDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Comment">
+    <id column="commId" jdbcType="VARCHAR" property="commid" />
+    <result column="empId" jdbcType="VARCHAR" property="empid" />
+    <result column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="commTime" jdbcType="TIMESTAMP" property="commtime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="favoLevel" jdbcType="REAL" property="favolevel" />
+    <result column="isHide" jdbcType="BIT" property="ishide" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commId, empId, courseId, commTime, content, favoLevel, isHide
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where commId = #{commid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from comment
+    where commId = #{commid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Comment">
+    insert into comment (commId, empId, courseId, 
+      commTime, content, favoLevel, 
+      isHide)
+    values (#{commid,jdbcType=VARCHAR}, #{empid,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, 
+      #{commtime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{favolevel,jdbcType=REAL}, 
+      #{ishide,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commid != null">
+        commId,
+      </if>
+      <if test="empid != null">
+        empId,
+      </if>
+      <if test="courseid != null">
+        courseId,
+      </if>
+      <if test="commtime != null">
+        commTime,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="favolevel != null">
+        favoLevel,
+      </if>
+      <if test="ishide != null">
+        isHide,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commid != null">
+        #{commid,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="commtime != null">
+        #{commtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="favolevel != null">
+        #{favolevel,jdbcType=REAL},
+      </if>
+      <if test="ishide != null">
+        #{ishide,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Comment">
+    update comment
+    <set>
+      <if test="empid != null">
+        empId = #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null">
+        courseId = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="commtime != null">
+        commTime = #{commtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="favolevel != null">
+        favoLevel = #{favolevel,jdbcType=REAL},
+      </if>
+      <if test="ishide != null">
+        isHide = #{ishide,jdbcType=BIT},
+      </if>
+    </set>
+    where commId = #{commid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Comment">
+    update comment
+    set empId = #{empid,jdbcType=VARCHAR},
+      courseId = #{courseid,jdbcType=VARCHAR},
+      commTime = #{commtime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
+      favoLevel = #{favolevel,jdbcType=REAL},
+      isHide = #{ishide,jdbcType=BIT}
+    where commId = #{commid,jdbcType=VARCHAR}
+  </update>
+</mapper>

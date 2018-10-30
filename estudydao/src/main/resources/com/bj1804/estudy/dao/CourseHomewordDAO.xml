@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.CourseHomewordDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.CourseHomeword">
+    <id column="course_homework_id" jdbcType="INTEGER" property="courseHomeworkId" />
+    <result column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="homeworkId" jdbcType="VARCHAR" property="homeworkid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    course_homework_id, courseId, homeworkId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_homeword
+    where course_homework_id = #{courseHomeworkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_homeword
+    where course_homework_id = #{courseHomeworkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.CourseHomeword">
+    insert into course_homeword (course_homework_id, courseId, homeworkId
+      )
+    values (#{courseHomeworkId,jdbcType=INTEGER}, #{courseid,jdbcType=VARCHAR}, #{homeworkid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.CourseHomeword">
+    insert into course_homeword
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseHomeworkId != null">
+        course_homework_id,
+      </if>
+      <if test="courseid != null">
+        courseId,
+      </if>
+      <if test="homeworkid != null">
+        homeworkId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseHomeworkId != null">
+        #{courseHomeworkId,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeworkid != null">
+        #{homeworkid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.CourseHomeword">
+    update course_homeword
+    <set>
+      <if test="courseid != null">
+        courseId = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="homeworkid != null">
+        homeworkId = #{homeworkid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where course_homework_id = #{courseHomeworkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.CourseHomeword">
+    update course_homeword
+    set courseId = #{courseid,jdbcType=VARCHAR},
+      homeworkId = #{homeworkid,jdbcType=VARCHAR}
+    where course_homework_id = #{courseHomeworkId,jdbcType=INTEGER}
+  </update>
+</mapper>

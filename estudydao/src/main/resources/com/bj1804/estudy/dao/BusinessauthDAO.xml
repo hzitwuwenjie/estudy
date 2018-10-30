@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.BusinessauthDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Businessauth">
+    <id column="authid" jdbcType="VARCHAR" property="authid" />
+    <result column="businessid" jdbcType="VARCHAR" property="businessid" />
+    <result column="exclusiveurl" jdbcType="VARCHAR" property="exclusiveurl" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="properties" jdbcType="VARCHAR" property="properties" />
+    <result column="creditcode" jdbcType="VARCHAR" property="creditcode" />
+    <result column="credentials" jdbcType="VARCHAR" property="credentials" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    authid, businessid, exclusiveurl, industry, properties, creditcode, credentials
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from businessauth
+    where authid = #{authid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from businessauth
+    where authid = #{authid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Businessauth">
+    insert into businessauth (authid, businessid, exclusiveurl, 
+      industry, properties, creditcode, 
+      credentials)
+    values (#{authid,jdbcType=VARCHAR}, #{businessid,jdbcType=VARCHAR}, #{exclusiveurl,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{properties,jdbcType=VARCHAR}, #{creditcode,jdbcType=VARCHAR}, 
+      #{credentials,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Businessauth">
+    insert into businessauth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="authid != null">
+        authid,
+      </if>
+      <if test="businessid != null">
+        businessid,
+      </if>
+      <if test="exclusiveurl != null">
+        exclusiveurl,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="properties != null">
+        properties,
+      </if>
+      <if test="creditcode != null">
+        creditcode,
+      </if>
+      <if test="credentials != null">
+        credentials,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="authid != null">
+        #{authid,jdbcType=VARCHAR},
+      </if>
+      <if test="businessid != null">
+        #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="exclusiveurl != null">
+        #{exclusiveurl,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="properties != null">
+        #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null">
+        #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="credentials != null">
+        #{credentials,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Businessauth">
+    update businessauth
+    <set>
+      <if test="businessid != null">
+        businessid = #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="exclusiveurl != null">
+        exclusiveurl = #{exclusiveurl,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="properties != null">
+        properties = #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null">
+        creditcode = #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="credentials != null">
+        credentials = #{credentials,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where authid = #{authid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Businessauth">
+    update businessauth
+    set businessid = #{businessid,jdbcType=VARCHAR},
+      exclusiveurl = #{exclusiveurl,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      properties = #{properties,jdbcType=VARCHAR},
+      creditcode = #{creditcode,jdbcType=VARCHAR},
+      credentials = #{credentials,jdbcType=VARCHAR}
+    where authid = #{authid,jdbcType=VARCHAR}
+  </update>
+</mapper>

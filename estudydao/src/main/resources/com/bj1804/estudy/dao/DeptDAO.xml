@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.DeptDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Dept">
+    <id column="deptid" jdbcType="INTEGER" property="deptid" />
+    <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+    <result column="higherdeptid" jdbcType="VARCHAR" property="higherdeptid" />
+    <result column="deptdirector" jdbcType="VARCHAR" property="deptdirector" />
+    <result column="deptpath" jdbcType="VARCHAR" property="deptpath" />
+    <result column="deptgrade" jdbcType="INTEGER" property="deptgrade" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createuser" jdbcType="VARCHAR" property="createuser" />
+    <result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+    <result column="businessid" jdbcType="INTEGER" property="businessid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    deptid, deptname, higherdeptid, deptdirector, deptpath, deptgrade, createtime, updatetime, 
+    `createuser`, updateuser, businessid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dept
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Dept">
+    insert into dept (deptid, deptname, higherdeptid, 
+      deptdirector, deptpath, deptgrade, 
+      createtime, updatetime, `createuser`, 
+      updateuser, businessid)
+    values (#{deptid,jdbcType=INTEGER}, #{deptname,jdbcType=VARCHAR}, #{higherdeptid,jdbcType=VARCHAR}, 
+      #{deptdirector,jdbcType=VARCHAR}, #{deptpath,jdbcType=VARCHAR}, #{deptgrade,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{createuser,jdbcType=VARCHAR}, 
+      #{updateuser,jdbcType=VARCHAR}, #{businessid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Dept">
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptid != null">
+        deptid,
+      </if>
+      <if test="deptname != null">
+        deptname,
+      </if>
+      <if test="higherdeptid != null">
+        higherdeptid,
+      </if>
+      <if test="deptdirector != null">
+        deptdirector,
+      </if>
+      <if test="deptpath != null">
+        deptpath,
+      </if>
+      <if test="deptgrade != null">
+        deptgrade,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createuser != null">
+        `createuser`,
+      </if>
+      <if test="updateuser != null">
+        updateuser,
+      </if>
+      <if test="businessid != null">
+        businessid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptid != null">
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="higherdeptid != null">
+        #{higherdeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptdirector != null">
+        #{deptdirector,jdbcType=VARCHAR},
+      </if>
+      <if test="deptpath != null">
+        #{deptpath,jdbcType=VARCHAR},
+      </if>
+      <if test="deptgrade != null">
+        #{deptgrade,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="businessid != null">
+        #{businessid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Dept">
+    update dept
+    <set>
+      <if test="deptname != null">
+        deptname = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="higherdeptid != null">
+        higherdeptid = #{higherdeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptdirector != null">
+        deptdirector = #{deptdirector,jdbcType=VARCHAR},
+      </if>
+      <if test="deptpath != null">
+        deptpath = #{deptpath,jdbcType=VARCHAR},
+      </if>
+      <if test="deptgrade != null">
+        deptgrade = #{deptgrade,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        `createuser` = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        updateuser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="businessid != null">
+        businessid = #{businessid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Dept">
+    update dept
+    set deptname = #{deptname,jdbcType=VARCHAR},
+      higherdeptid = #{higherdeptid,jdbcType=VARCHAR},
+      deptdirector = #{deptdirector,jdbcType=VARCHAR},
+      deptpath = #{deptpath,jdbcType=VARCHAR},
+      deptgrade = #{deptgrade,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      `createuser` = #{createuser,jdbcType=VARCHAR},
+      updateuser = #{updateuser,jdbcType=VARCHAR},
+      businessid = #{businessid,jdbcType=INTEGER}
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </update>
+</mapper>

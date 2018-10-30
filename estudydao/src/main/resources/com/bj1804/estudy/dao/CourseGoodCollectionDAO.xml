@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.CourseGoodCollectionDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.CourseGoodCollection">
+    <id column="collection_id" jdbcType="INTEGER" property="collectionId" />
+    <result column="businessid" jdbcType="VARCHAR" property="businessid" />
+    <result column="shop_good_id" jdbcType="VARCHAR" property="shopGoodId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    collection_id, businessid, shop_good_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_good_collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_good_collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.CourseGoodCollection">
+    insert into course_good_collection (collection_id, businessid, shop_good_id
+      )
+    values (#{collectionId,jdbcType=INTEGER}, #{businessid,jdbcType=VARCHAR}, #{shopGoodId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.CourseGoodCollection">
+    insert into course_good_collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        collection_id,
+      </if>
+      <if test="businessid != null">
+        businessid,
+      </if>
+      <if test="shopGoodId != null">
+        shop_good_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        #{collectionId,jdbcType=INTEGER},
+      </if>
+      <if test="businessid != null">
+        #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGoodId != null">
+        #{shopGoodId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.CourseGoodCollection">
+    update course_good_collection
+    <set>
+      <if test="businessid != null">
+        businessid = #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGoodId != null">
+        shop_good_id = #{shopGoodId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.CourseGoodCollection">
+    update course_good_collection
+    set businessid = #{businessid,jdbcType=VARCHAR},
+      shop_good_id = #{shopGoodId,jdbcType=VARCHAR}
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+</mapper>

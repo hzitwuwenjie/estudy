@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.CourseDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Course">
+    <id column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="businessid" jdbcType="VARCHAR" property="businessid" />
+    <result column="empId" jdbcType="VARCHAR" property="empid" />
+    <result column="courImg" jdbcType="VARCHAR" property="courimg" />
+    <result column="courName" jdbcType="VARCHAR" property="courname" />
+    <result column="pubState" jdbcType="BIT" property="pubstate" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="lastUpdate" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="knowId" jdbcType="VARCHAR" property="knowid" />
+    <result column="cdesc" jdbcType="VARCHAR" property="cdesc" />
+    <result column="isHot" jdbcType="BIT" property="ishot" />
+    <result column="lookCount" jdbcType="INTEGER" property="lookcount" />
+    <result column="collerctCount" jdbcType="INTEGER" property="collerctcount" />
+    <result column="agreeCount" jdbcType="INTEGER" property="agreecount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    courseId, businessid, empId, courImg, courName, pubState, createTime, lastUpdate, 
+    knowId, cdesc, isHot, lookCount, collerctCount, agreeCount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where courseId = #{courseid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from course
+    where courseId = #{courseid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Course">
+    insert into course (courseId, businessid, empId, 
+      courImg, courName, pubState, 
+      createTime, lastUpdate, knowId, 
+      cdesc, isHot, lookCount, 
+      collerctCount, agreeCount)
+    values (#{courseid,jdbcType=VARCHAR}, #{businessid,jdbcType=VARCHAR}, #{empid,jdbcType=VARCHAR}, 
+      #{courimg,jdbcType=VARCHAR}, #{courname,jdbcType=VARCHAR}, #{pubstate,jdbcType=BIT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{lastupdate,jdbcType=TIMESTAMP}, #{knowid,jdbcType=VARCHAR}, 
+      #{cdesc,jdbcType=VARCHAR}, #{ishot,jdbcType=BIT}, #{lookcount,jdbcType=INTEGER}, 
+      #{collerctcount,jdbcType=INTEGER}, #{agreecount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        courseId,
+      </if>
+      <if test="businessid != null">
+        businessid,
+      </if>
+      <if test="empid != null">
+        empId,
+      </if>
+      <if test="courimg != null">
+        courImg,
+      </if>
+      <if test="courname != null">
+        courName,
+      </if>
+      <if test="pubstate != null">
+        pubState,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="lastupdate != null">
+        lastUpdate,
+      </if>
+      <if test="knowid != null">
+        knowId,
+      </if>
+      <if test="cdesc != null">
+        cdesc,
+      </if>
+      <if test="ishot != null">
+        isHot,
+      </if>
+      <if test="lookcount != null">
+        lookCount,
+      </if>
+      <if test="collerctcount != null">
+        collerctCount,
+      </if>
+      <if test="agreecount != null">
+        agreeCount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="businessid != null">
+        #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="courimg != null">
+        #{courimg,jdbcType=VARCHAR},
+      </if>
+      <if test="courname != null">
+        #{courname,jdbcType=VARCHAR},
+      </if>
+      <if test="pubstate != null">
+        #{pubstate,jdbcType=BIT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="knowid != null">
+        #{knowid,jdbcType=VARCHAR},
+      </if>
+      <if test="cdesc != null">
+        #{cdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=BIT},
+      </if>
+      <if test="lookcount != null">
+        #{lookcount,jdbcType=INTEGER},
+      </if>
+      <if test="collerctcount != null">
+        #{collerctcount,jdbcType=INTEGER},
+      </if>
+      <if test="agreecount != null">
+        #{agreecount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Course">
+    update course
+    <set>
+      <if test="businessid != null">
+        businessid = #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null">
+        empId = #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="courimg != null">
+        courImg = #{courimg,jdbcType=VARCHAR},
+      </if>
+      <if test="courname != null">
+        courName = #{courname,jdbcType=VARCHAR},
+      </if>
+      <if test="pubstate != null">
+        pubState = #{pubstate,jdbcType=BIT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdate != null">
+        lastUpdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="knowid != null">
+        knowId = #{knowid,jdbcType=VARCHAR},
+      </if>
+      <if test="cdesc != null">
+        cdesc = #{cdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ishot != null">
+        isHot = #{ishot,jdbcType=BIT},
+      </if>
+      <if test="lookcount != null">
+        lookCount = #{lookcount,jdbcType=INTEGER},
+      </if>
+      <if test="collerctcount != null">
+        collerctCount = #{collerctcount,jdbcType=INTEGER},
+      </if>
+      <if test="agreecount != null">
+        agreeCount = #{agreecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where courseId = #{courseid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Course">
+    update course
+    set businessid = #{businessid,jdbcType=VARCHAR},
+      empId = #{empid,jdbcType=VARCHAR},
+      courImg = #{courimg,jdbcType=VARCHAR},
+      courName = #{courname,jdbcType=VARCHAR},
+      pubState = #{pubstate,jdbcType=BIT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      lastUpdate = #{lastupdate,jdbcType=TIMESTAMP},
+      knowId = #{knowid,jdbcType=VARCHAR},
+      cdesc = #{cdesc,jdbcType=VARCHAR},
+      isHot = #{ishot,jdbcType=BIT},
+      lookCount = #{lookcount,jdbcType=INTEGER},
+      collerctCount = #{collerctcount,jdbcType=INTEGER},
+      agreeCount = #{agreecount,jdbcType=INTEGER}
+    where courseId = #{courseid,jdbcType=VARCHAR}
+  </update>
+</mapper>

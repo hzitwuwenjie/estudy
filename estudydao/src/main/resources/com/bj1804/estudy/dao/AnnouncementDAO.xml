@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.AnnouncementDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Announcement">
+    <id column="announcementid" jdbcType="VARCHAR" property="announcementid" />
+    <result column="businessid" jdbcType="VARCHAR" property="businessid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="employeeid" jdbcType="VARCHAR" property="employeeid" />
+    <result column="releasetime" jdbcType="TIMESTAMP" property="releasetime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createUser" jdbcType="VARCHAR" property="createuser" />
+    <result column="updateUser" jdbcType="VARCHAR" property="updateuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    announcementid, businessid, `status`, title, content, employeeid, releasetime, createtime, 
+    updatetime, `createUser`, updateUser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where announcementid = #{announcementid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from announcement
+    where announcementid = #{announcementid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Announcement">
+    insert into announcement (announcementid, businessid, `status`, 
+      title, content, employeeid, 
+      releasetime, createtime, updatetime, 
+      `createUser`, updateUser)
+    values (#{announcementid,jdbcType=VARCHAR}, #{businessid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{employeeid,jdbcType=VARCHAR}, 
+      #{releasetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{createuser,jdbcType=VARCHAR}, #{updateuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Announcement">
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="announcementid != null">
+        announcementid,
+      </if>
+      <if test="businessid != null">
+        businessid,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="employeeid != null">
+        employeeid,
+      </if>
+      <if test="releasetime != null">
+        releasetime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createuser != null">
+        `createUser`,
+      </if>
+      <if test="updateuser != null">
+        updateUser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="announcementid != null">
+        #{announcementid,jdbcType=VARCHAR},
+      </if>
+      <if test="businessid != null">
+        #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        #{employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="releasetime != null">
+        #{releasetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Announcement">
+    update announcement
+    <set>
+      <if test="businessid != null">
+        businessid = #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null">
+        employeeid = #{employeeid,jdbcType=VARCHAR},
+      </if>
+      <if test="releasetime != null">
+        releasetime = #{releasetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        `createUser` = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where announcementid = #{announcementid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Announcement">
+    update announcement
+    set businessid = #{businessid,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      employeeid = #{employeeid,jdbcType=VARCHAR},
+      releasetime = #{releasetime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      `createUser` = #{createuser,jdbcType=VARCHAR},
+      updateUser = #{updateuser,jdbcType=VARCHAR}
+    where announcementid = #{announcementid,jdbcType=VARCHAR}
+  </update>
+</mapper>

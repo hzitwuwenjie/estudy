@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.CourseCoursewareDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.CourseCourseware">
+    <id column="course_courseware_id" jdbcType="INTEGER" property="courseCoursewareId" />
+    <result column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="coursewareId" jdbcType="VARCHAR" property="coursewareid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    course_courseware_id, courseId, coursewareId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_courseware
+    where course_courseware_id = #{courseCoursewareId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_courseware
+    where course_courseware_id = #{courseCoursewareId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.CourseCourseware">
+    insert into course_courseware (course_courseware_id, courseId, coursewareId
+      )
+    values (#{courseCoursewareId,jdbcType=INTEGER}, #{courseid,jdbcType=VARCHAR}, #{coursewareid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.CourseCourseware">
+    insert into course_courseware
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseCoursewareId != null">
+        course_courseware_id,
+      </if>
+      <if test="courseid != null">
+        courseId,
+      </if>
+      <if test="coursewareid != null">
+        coursewareId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseCoursewareId != null">
+        #{courseCoursewareId,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursewareid != null">
+        #{coursewareid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.CourseCourseware">
+    update course_courseware
+    <set>
+      <if test="courseid != null">
+        courseId = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursewareid != null">
+        coursewareId = #{coursewareid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where course_courseware_id = #{courseCoursewareId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.CourseCourseware">
+    update course_courseware
+    set courseId = #{courseid,jdbcType=VARCHAR},
+      coursewareId = #{coursewareid,jdbcType=VARCHAR}
+    where course_courseware_id = #{courseCoursewareId,jdbcType=INTEGER}
+  </update>
+</mapper>

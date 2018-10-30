@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.AdvertisementDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Advertisement">
+    <id column="ad_id" jdbcType="VARCHAR" property="adId" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="ad_img" jdbcType="VARCHAR" property="adImg" />
+    <result column="ad_url" jdbcType="VARCHAR" property="adUrl" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createuser" jdbcType="VARCHAR" property="createuser" />
+    <result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_id, ad_name, ad_img, ad_url, createtime, updatetime, `createuser`, updateuser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertisement
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from advertisement
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Advertisement">
+    insert into advertisement (ad_id, ad_name, ad_img, 
+      ad_url, createtime, updatetime, 
+      `createuser`, updateuser)
+    values (#{adId,jdbcType=VARCHAR}, #{adName,jdbcType=VARCHAR}, #{adImg,jdbcType=VARCHAR}, 
+      #{adUrl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{createuser,jdbcType=VARCHAR}, #{updateuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Advertisement">
+    insert into advertisement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+      <if test="adImg != null">
+        ad_img,
+      </if>
+      <if test="adUrl != null">
+        ad_url,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createuser != null">
+        `createuser`,
+      </if>
+      <if test="updateuser != null">
+        updateuser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        #{adId,jdbcType=VARCHAR},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adImg != null">
+        #{adImg,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl != null">
+        #{adUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Advertisement">
+    update advertisement
+    <set>
+      <if test="adName != null">
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adImg != null">
+        ad_img = #{adImg,jdbcType=VARCHAR},
+      </if>
+      <if test="adUrl != null">
+        ad_url = #{adUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null">
+        `createuser` = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuser != null">
+        updateuser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Advertisement">
+    update advertisement
+    set ad_name = #{adName,jdbcType=VARCHAR},
+      ad_img = #{adImg,jdbcType=VARCHAR},
+      ad_url = #{adUrl,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      `createuser` = #{createuser,jdbcType=VARCHAR},
+      updateuser = #{updateuser,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bj1804.estudy.dao.BusinessDAO">
+  <resultMap id="BaseResultMap" type="com.bj1804.estudy.entity.Business">
+    <id column="businessid" jdbcType="INTEGER" property="businessid" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="businessplace" jdbcType="VARCHAR" property="businessplace" />
+    <result column="businessphone" jdbcType="VARCHAR" property="businessphone" />
+    <result column="abbreviation" jdbcType="VARCHAR" property="abbreviation" />
+    <result column="businessname" jdbcType="VARCHAR" property="businessname" />
+    <result column="isauth" jdbcType="INTEGER" property="isauth" />
+    <result column="smaccount" jdbcType="VARCHAR" property="smaccount" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="pversion" jdbcType="VARCHAR" property="pversion" />
+    <result column="remainning" jdbcType="INTEGER" property="remainning" />
+    <result column="businesscount" jdbcType="VARCHAR" property="businesscount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    businessid, url, businessplace, businessphone, abbreviation, businessname, isauth, 
+    smaccount, mail, logo, pversion, remainning, businesscount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where businessid = #{businessid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from business
+    where businessid = #{businessid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bj1804.estudy.entity.Business">
+    insert into business (businessid, url, businessplace, 
+      businessphone, abbreviation, businessname, 
+      isauth, smaccount, mail, 
+      logo, pversion, remainning, 
+      businesscount)
+    values (#{businessid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{businessplace,jdbcType=VARCHAR}, 
+      #{businessphone,jdbcType=VARCHAR}, #{abbreviation,jdbcType=VARCHAR}, #{businessname,jdbcType=VARCHAR}, 
+      #{isauth,jdbcType=INTEGER}, #{smaccount,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
+      #{logo,jdbcType=VARCHAR}, #{pversion,jdbcType=VARCHAR}, #{remainning,jdbcType=INTEGER}, 
+      #{businesscount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bj1804.estudy.entity.Business">
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessid != null">
+        businessid,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="businessplace != null">
+        businessplace,
+      </if>
+      <if test="businessphone != null">
+        businessphone,
+      </if>
+      <if test="abbreviation != null">
+        abbreviation,
+      </if>
+      <if test="businessname != null">
+        businessname,
+      </if>
+      <if test="isauth != null">
+        isauth,
+      </if>
+      <if test="smaccount != null">
+        smaccount,
+      </if>
+      <if test="mail != null">
+        mail,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="pversion != null">
+        pversion,
+      </if>
+      <if test="remainning != null">
+        remainning,
+      </if>
+      <if test="businesscount != null">
+        businesscount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessid != null">
+        #{businessid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="businessplace != null">
+        #{businessplace,jdbcType=VARCHAR},
+      </if>
+      <if test="businessphone != null">
+        #{businessphone,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null">
+        #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="isauth != null">
+        #{isauth,jdbcType=INTEGER},
+      </if>
+      <if test="smaccount != null">
+        #{smaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="pversion != null">
+        #{pversion,jdbcType=VARCHAR},
+      </if>
+      <if test="remainning != null">
+        #{remainning,jdbcType=INTEGER},
+      </if>
+      <if test="businesscount != null">
+        #{businesscount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bj1804.estudy.entity.Business">
+    update business
+    <set>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="businessplace != null">
+        businessplace = #{businessplace,jdbcType=VARCHAR},
+      </if>
+      <if test="businessphone != null">
+        businessphone = #{businessphone,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null">
+        abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        businessname = #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="isauth != null">
+        isauth = #{isauth,jdbcType=INTEGER},
+      </if>
+      <if test="smaccount != null">
+        smaccount = #{smaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="pversion != null">
+        pversion = #{pversion,jdbcType=VARCHAR},
+      </if>
+      <if test="remainning != null">
+        remainning = #{remainning,jdbcType=INTEGER},
+      </if>
+      <if test="businesscount != null">
+        businesscount = #{businesscount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where businessid = #{businessid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bj1804.estudy.entity.Business">
+    update business
+    set url = #{url,jdbcType=VARCHAR},
+      businessplace = #{businessplace,jdbcType=VARCHAR},
+      businessphone = #{businessphone,jdbcType=VARCHAR},
+      abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      businessname = #{businessname,jdbcType=VARCHAR},
+      isauth = #{isauth,jdbcType=INTEGER},
+      smaccount = #{smaccount,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      pversion = #{pversion,jdbcType=VARCHAR},
+      remainning = #{remainning,jdbcType=INTEGER},
+      businesscount = #{businesscount,jdbcType=VARCHAR}
+    where businessid = #{businessid,jdbcType=INTEGER}
+  </update>
+</mapper>
