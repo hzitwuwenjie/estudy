@@ -74,6 +74,12 @@ public class Business implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Business(int businessid) {
+        this.businessid=businessid;
+    }
+    public Business() {
+
+    }
     public Integer getBusinessid() {
         return businessid;
     }
